@@ -1,0 +1,28 @@
+# ---------------------------
+# Python
+# ---------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.py~ 
+
+# virtual environments
+venv/
+env/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Interim / временные данные
+data/interim/*
+!data/interim/.gitkeep
+
+# ---------------------------
+# Misc
+# ---------------------------
+*.tmp
+*.bak
+*.orig
+.~lock*
