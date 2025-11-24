@@ -1,5 +1,96 @@
-# ACTED_test_task
+# ACTED HNMU Data Officer — Test Assignment
 
+This project contains my solution to the **HNMU (Humanitarian Needs and Monitoring Unit) Data Officer Test Assignment**  of **ACTED/REACH**, which consists of three parts:
+data cleaning & preprocessing, data analysis, and dashboard creation.
+
+All scripts, input data, outputs, and the dashboard are included in this repository.
+
+## 🔧 1. Data Cleaning & Preprocessing (Python)
+
+All steps are implemented in [`notebooks/task.ipynb`](https://github.com/paalso/ACTED_test_task/blob/main/notebooks/task.ipynb):
+
+### 1.1 Remove incomplete surveys
+
+- Records with missing critical fields were removed.
+
+- Sample size requirements (≥159 interviews per oblast) were checked.
+
+### 1.2 Logic check for disability vs household size
+
+- Implemented validation rule from task description.
+
+- Records failing the check had their disability fields set to NA (as required).
+
+### 1.3 Total income per capita
+
+- Calculated using total household income divided by household size.
+
+- Result stored as new variable `income_per_capita`.
+
+## 📊 2. Data Analysis (Python)
+
+### 2.1 Average income per capita + margin of error
+
+- Grouped by oblast (`oblast`).
+
+- Calculated:
+
+  - mean income per capita
+
+  - standard error
+
+  - margin of error at 95% confidence
+
+### 2.2 Livelihoods LSG (levels 1–4 or NA)
+
+- Rules taken from *Livelihoods_LSG.xlsx*  .
+
+Three dimensions calculated:
+
+Income sources (`lsg_income_sources`)
+
+Total income per capita (`lsg_income_per_capita`)
+
+Livelihoods coping strategies (`lsg_lcsi`)
+
+Final `livelihoods_lsg` = maximum of the three levels;
+if any dimension is NA → full result = NA.
+
+## 📈 3. Dashboard (Power BI)
+
+The dashboard file is located at:
+
+`dashboard/dashboard.pbix`
+
+The dashboard includes:
+
+### 3.1 Top-5 oblasts by average income per capita
+
+Bar chart based on aggregated results from task 2.1.
+
+### 3.2 Distribution of Livelihoods LSG (1–4)
+
+Donut or bar chart showing percentage of households at each level.
+
+### 3.3 Disability filter
+
+A slicer based on `disability_count`, with two options:
+
+Households with disability (responses starting with "yes")
+
+- ***No disability***
+- ***With disability***
+
+### 3.4 Respondent count by oblast (map)
+
+Shape map of Ukraine showing number of respondents per oblast.
+Includes custom TopoJSON file: *data/Ukraine-regions-ua*.
+
+The result dashboard [`reports/dashboard.pbix`](https://github.com/paalso/ACTED_test_task/blob/main/reports/dashboard.pbix)
+
+![Dashboard preview](https://github.com/paalso/ACTED_test_task/blob/main/reports/dashboard.jpg)
+
+## The dataset columns description
 
 | Dataset column | Description |
 | --- | --- |
